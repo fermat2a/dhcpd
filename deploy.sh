@@ -16,8 +16,10 @@ if [ ! -e dhcpd-omapi.conf ] ; then
   rm Komapi_key.*
 fi
 
+echo "dhcp1:" && \
 scp *.conf root@dhcp1:/etc/dhcp/ && \
 ssh root@dhcp1 systemctl restart isc-dhcp-server && \
+echo "dhcp2:" && \
 scp *.conf root@dhcp2:/etc/dhcp/ && \
 ssh root@dhcp2 systemctl restart isc-dhcp-server && \
 echo successfully deployed and restarted
